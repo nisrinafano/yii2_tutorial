@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "article".
@@ -49,7 +50,7 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'slug', 'body', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'required'],
+            [['title', 'body'], 'required'],
             [['body'], 'string'],
             [['created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['title', 'slug'], 'string', 'max' => 1024],
@@ -93,5 +94,9 @@ class Article extends \yii\db\ActiveRecord
     public function getUpdatedBy()
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
+    }
+
+    public function getEncodedBody() {
+        return Html::encode($this->body);
     }
 }
