@@ -3,7 +3,7 @@
 ?>
 
 <div>
-    <a href="<?php echo yii\helpers\Url::to(['/article/view', 'id' => $model->id])?>">
+    <a href="<?php echo yii\helpers\Url::to(['/article/view', 'slug' => $model->slug])?>">
         <?php echo yii\helpers\Html::encode($model->title)?>
     </a>
     <div>
